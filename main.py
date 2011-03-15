@@ -93,10 +93,8 @@ def render_template(template_name):
     _swap_settings(old_settings)
 	
   template_vals = {}
-  template_vals.update({
-        'config': config,
-		'theme_path' : '/themes/'+config.theme
-  })
+  template_vals.update({'config': config})
+  template_vals.update({'theme_path' : '/static/'+config.theme})
   template_vals.update({'template_name': template_name})
   
   return tpl.render(django.template.Context(template_vals))

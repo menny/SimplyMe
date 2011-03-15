@@ -4,9 +4,9 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /themes/(.*)
-  static_files: themes/\1
-  upload: themes/(.*)
+- url: /static/([^/]+)/(.*)
+  static_files: themes/\1/\2
+  upload: themes/[^/]+/static/.*
   
 - url: .*
   script: main.py
