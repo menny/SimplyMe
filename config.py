@@ -29,4 +29,5 @@ my_interests = [
 ]
 
 # If you want to use Google Analytics, enter your 'web property id' here
-analytics_id = None
+analytics_id = 'UA-19733018-1'
+analytics_domain = '.evendanan.net'
