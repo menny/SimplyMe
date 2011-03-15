@@ -6,6 +6,8 @@ my_name = 'Menny Even Danan'
 # Selects the theme to use. Theme names correspond to directories under
 # the 'themes' directory, containing templates and static content.
 theme = 'menny'
+mobile_them ='menny'
+
 # Links to External Services on which the User has an Account.
 # This will be listed in a theme-specific way.
 my_cv = [
