@@ -1,11 +1,11 @@
-application: mennypersonalsite
+application: simplymenny
 version: 1
 runtime: python
 api_version: 1
 
 handlers:
-- url: /static/([^/]+)/(.*)
-  static_files: themes/\1/\2
+- url: /static/([^/]+)/static/(.*)
+  static_files: themes/\1/static/\2
   upload: themes/[^/]+/static/.*
   
 - url: .*
