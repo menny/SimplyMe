@@ -116,6 +116,23 @@ ul
 	color: black;
 	background-color: white;
 }
+
+.bio_title ul
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
+
+.bio_title ul li
+{
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+}
+
+
 .my_photo
 {
 	-webkit-border-radius: 15px;

@@ -9,6 +9,19 @@
 	<link rel="stylesheet" href="{{ theme_path }}/static/css/styles_home.css" type="text/css" charset="utf-8">
 	<link REL="SHORTCUT ICON" HREF="{{ theme_path }}/static/favicon.ico">
 	<link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
+	
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', '{{ config.analytics_id }}']);
+	_gaq.push(['_setDomainName', '{{ config.analytics_domain }}']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
 </head>
 
 <body>
@@ -16,35 +29,30 @@
 	<div id="text">
 		<table border="0" bordercolor="#FFFFFF">
 			<tr>
-				<td class="bio_title drop-shadow raised"></a><h1>{{ config.my_name }}</h1></td>
+				<td class="bio_title drop-shadow raised"></a>
+					<h1>{{ config.my_name }}</h1>
+					<ul>
+						{% for a_contact in config.my_contact_info %}
+						<li><a href="{{ a_contact.url }}" target="_blank">{{ a_contact.title }}</a></li>
+						{% endfor %}
+					</ul>
+				</td>
 				<td class="my_photo">&nbsp;</td>
 			</tr>
 			<tr>
 				<td class="bio">
 					<ul class="drop-shadow lifted">
 						<li><strong>...does:</strong></li>
-						<li><a href="http://softkeyboard.googlecode.com"><b>a</b>ny<b>s</b>oft<b>k</b>eyboard</a> - highly customizable, <a href="https://market.android.com/search?q=anysoftkeyboard&c=apps">plugins</a> based virtual keyboard for the Android OS.</li>
-						<li><a href="http://http://code.google.com/p/fill-mythvideo-metadata/"><b>f</b>ill<b>v</b>ideo<b>m</b>etadata</a> - a metadata fetcher script for <a href="http://www.mythtv.org">MythTV 0.23</a> <small>(I know, it should be updated to <a href="http://www.mythtv.org/news/143/MythTV%200.24%20Available">0.24</a>, but it probably <a href="http://boxee.tv">wont</a>).</small></li>
-						<li><a href="http://www.speakingpal.com"><b>s</b>peaking<b>p</b>al</a> - an mLearning startup.</li>
-						<li><a href="http://blog.evendanan.net/"><b>b</b>log</a> - a pretty static system and software blog.</li>
-					</ul>
-					
-					<ul class="drop-shadow lifted">
-						<li><strong>...can be found at:</strong></li>
-						<li><a href="mailto:menny|AT|evendanan{dot}net"><b>e</b>mail</a></li>
-						<!--
-						<li><a href="http://twitter.com/anysoftkeyboard">twitter</a></li>
-						<li><a href="http://www.facebook.com/menny">facebook</a></li>
-						-->
-						<li><a href="http://il.linkedin.com/in/menny"><b>l</b>inked<b>i</b>n</a></li>
-						<li><a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Alterman+14,+Tel+Aviv,+Israel&sll=37.0625,-95.677068&sspn=45.418852,93.076172&ie=UTF8&hq=&hnear=Alterman+14,+Tel+Aviv-Yafo,+Israel&t=h&z=16"><b>h</b>ome</a> from time to time</a></li>
+						{% for a_cv in config.my_cv %}
+						<li><a href="{{ a_cv.url }}" target="_blank">{{ a_cv.title }}</a> - {{ a_cv.description }}</li>
+						{% endfor %}
 					</ul>
 					
 					<ul class="drop-shadow lifted">
 						<li><strong>...finds interesting:</strong></li>
-						<li><a href="http://www.google.com/reader/shared/mennyed"><b>r</b>eader</a> - articles from the web.</li>
-						<li><a href="http://picasaweb.google.com/mennyed"><b>p</b>icasa</a> - photos from the world.</li>
-						<li><a href="http://forrst.com/people/menny/posts"><b>f</b>orrst</a> - snippets from me and others.</li>
+						{% for an_interest in config.my_interests %}
+						<li><a href="{{ an_interest.url }}" target="_blank">{{ an_interest.title }}</a> - {{ an_interest.description }}</li>
+						{% endfor %}
 					</ul>
 				</td>
 			</tr>
