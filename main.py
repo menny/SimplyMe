@@ -44,15 +44,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 import config
-
-BASE_DIR = os.path.dirname(__file__)
-
-if isinstance(config.theme, (list, tuple)):
-  TEMPLATE_DIRS = config.theme
-else:
-  TEMPLATE_DIRS = [os.path.abspath(os.path.join(BASE_DIR, 'themes/default'))]
-  if config.theme and config.theme != 'default':
-    TEMPLATE_DIRS.insert(0, os.path.abspath(os.path.join(BASE_DIR, 'themes', config.theme)))
+from minidetector import detect_mobile
 
 def _swap_settings(new):
   """Swap in selected Django settings, returning old settings.
@@ -84,8 +76,20 @@ def _swap_settings(new):
     setattr(settings, key, value)
   return old
 
-  
-def render_template(template_name):
+def render_template(template_name, is_mobile):
+  BASE_DIR = os.path.dirname(__file__)
+
+  user_theme = config.theme
+  if is_mobile:
+    user_theme = config.mobile_theme
+
+  if isinstance(user_theme, (list, tuple)):
+    TEMPLATE_DIRS = user_theme
+  else:
+    TEMPLATE_DIRS = [os.path.abspath(os.path.join(BASE_DIR, 'themes/default'))]
+    if user_theme and user_theme != 'default':
+      TEMPLATE_DIRS.insert(0, os.path.abspath(os.path.join(BASE_DIR, 'themes', user_theme)))
+
   old_settings = _swap_settings({'TEMPLATE_DIRS': TEMPLATE_DIRS})
   try:
     tpl = django.template.loader.get_template(template_name)
@@ -94,14 +98,15 @@ def render_template(template_name):
 	
   template_vals = {}
   template_vals.update({'config': config})
-  template_vals.update({'theme_path' : '/static/'+config.theme})
+  template_vals.update({'theme_path' : '/static/'+user_theme})
   template_vals.update({'template_name': template_name})
   
-  return tpl.render(django.template.Context(template_vals))
+  return tpl.render(django.template.Context(template_vals)) 
   
 class MainHandler(webapp.RequestHandler):
-    def get(self):
-		self.response.out.write(render_template("index.html"));
+  def get(self):
+    is_mobile = detect_mobile(self.request)
+    self.response.out.write(render_template("index.html", is_mobile))
 
 def main():
     application = webapp.WSGIApplication([('/', MainHandler)],
