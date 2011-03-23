@@ -44,6 +44,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 import config
+import user_data
 from minidetector import detect_mobile
 
 def _swap_settings(new):
@@ -97,7 +98,7 @@ def render_template(template_name, is_mobile):
     _swap_settings(old_settings)
 	
   template_vals = {}
-  template_vals.update({'config': config})
+  template_vals.update({'user_data': user_data.UserData()})
   template_vals.update({'theme_path' : '/static/'+user_theme})
   template_vals.update({'template_name': template_name})
   

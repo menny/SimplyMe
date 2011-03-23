@@ -5,10 +5,10 @@
 	-webkit-box-shadow:none;
 	   -moz-box-shadow:none;
 			box-shadow:none;
-	-webkit-transform:rotate(-3deg);    
-	   -moz-transform:rotate(-3deg);   
-		 -o-transform:rotate(-3deg);
-			transform:rotate(-3deg);
+	-webkit-transform:rotate(3deg);    
+	   -moz-transform:rotate(3deg);   
+		 -o-transform:rotate(3deg);
+			transform:rotate(3deg);
 }
 
 .rotated :first-child:before {
@@ -132,18 +132,14 @@ ul
 }
 
 
-.my_photo
+.photo
 {
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	width: 150px;
-	height: 200px;
-	background-image: url(../images/my_image.jpg);
-	background-repeat: no-repeat;
-	vertical-align: top;
-	margin:10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin: 24pt;
 }
+
 #content 
 {
 	margin-left: auto ;

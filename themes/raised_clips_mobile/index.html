@@ -4,20 +4,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<!--BELOW: this will make sure that the page will not be zoomable, and will always be centered in mobile devices-->
-	<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
-	<meta name="viewport" content="width=device-width" />
-	<!--ABOVE: this will make sure that the page will not be zoomable, and will always be centered in mobile devices-->
 
-	<title>{{ config.my_name }}</title>
+	<title>{{ user_data.my_full_name }}</title>
 	<link rel="stylesheet" href="{{ theme_path }}/static/css/styles_home.css" type="text/css" charset="utf-8">
 	<link REL="SHORTCUT ICON" HREF="{{ theme_path }}/static/favicon.ico">
 	<link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
 	
 	<script type="text/javascript">
 	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', '{{ config.analytics_id }}']);
-	_gaq.push(['_setDomainName', '{{ config.analytics_domain }}']);
+	_gaq.push(['_setAccount', '{{ user_data.google_analytics_id }}']);
+	_gaq.push(['_setDomainName', '{{ user_data.google_analytics_domain }}']);
 	_gaq.push(['_trackPageview']);
 
 	(function() {
@@ -34,21 +30,21 @@
 		<table border="0" bordercolor="#FFFFFF" width="100%">
 			<tr width="100%">
 				<td class="bio_title drop-shadow raised"></a>
-					<h1>{{ config.my_name }}</h1>
+					<h1>{{ user_data.my_full_name }}</h1>
 				</td>			
 			</tr>
 			<tr width="100%">
-				<td class="bio">
-					<ul class="drop-shadow lifted">
+				<td>
+					<ul class="bio drop-shadow lifted">
 						<li><strong>...does:</strong></li>
-						{% for a_cv in config.my_cv %}
+						{% for a_cv in user_data.my_cv %}
 						<li><a href="{{ a_cv.url }}" target="_blank">{{ a_cv.title }}</a> - {{ a_cv.description }}</li>
 						{% endfor %}
 					</ul>
 					
-					<ul class="drop-shadow lifted">
+					<ul class="bio drop-shadow lifted">
 						<li><strong>...finds interesting:</strong></li>
-						{% for an_interest in config.my_interests %}
+						{% for an_interest in user_data.my_interests %}
 						<li><a href="{{ an_interest.url }}" target="_blank">{{ an_interest.title }}</a> - {{ an_interest.description }}</li>
 						{% endfor %}
 					</ul>
@@ -58,7 +54,7 @@
 				<td class="contact_info drop-shadow lifted">
 					<ul>
 						<li><strong>...find me here:</strong></li>
-						{% for a_contact in config.my_contact_info %}
+						{% for a_contact in user_data.my_contact_info %}
 						<li><a href="{{ a_contact.url }}" target="_blank">{{ a_contact.title }}</a></li>
 						{% endfor %}
 					</ul>

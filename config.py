@@ -1,7 +1,14 @@
 import logging
 
-# Your name (used for copyright info)
-my_name = 'Menny Even Danan'
+# Your gravatar email 
+# This application will use the Gravatar system to pull information about yourself.
+#(see http://www.gravatar.com for more information)
+my_gravatar_email = 'fffa64472512e3e9df3519c06428224b'
+# It could be safer to store your email in a hashed format, especially if the config.py file is store in a public place (like Github).
+is_gravatar_email_hashed = True
+#I'm going to pull your image from Gravatar
+my_name = "Menny Even Danan"
+
 
 # Selects the theme to use. Theme names correspond to directories under
 # the 'themes' directory, containing templates and static content.
